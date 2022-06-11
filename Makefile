@@ -1,4 +1,4 @@
-CFLAGS   = -no-pie -mtune=native `sdl2-config --cflags`
+CFLAGS   = -no-pie -mtune=native `sdl2-config --cflags` -ggdb
 
 WARN_OFF = -Wno-implicit-function-declaration
 CFLAGS1  = $(CFLAGS) $(WARN_OFF)
@@ -9,12 +9,12 @@ LDFLAGS  = `sdl2-config --libs` -lSDL2_image -lm -lGL -lGLU -lGLEW
 
 srcdir	 =./
 # TARGETS	 = 1 2 3
-TARGETS	 = 1
+TARGETS	 = sdl-nanovg
 
 .PHONY: all
 all: $(TARGETS)
 
-1: $(srcdir)nanovg.c $(srcdir)1.c
+sdl-nanovg: $(srcdir)nanovg.c $(srcdir)main.c
 	$(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
 
 # 2: $(srcdir)nanovg.c $(srcdir)2.c
